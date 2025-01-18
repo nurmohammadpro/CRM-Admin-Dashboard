@@ -1,13 +1,9 @@
-import FacebookIcon from "@mui/icons-material/Facebook";
-import GoogleIcon from "@mui/icons-material/Google";
-import registerIcon from "../assets/registerIcon.png";
 import SignUpImg from "../assets/SignUp-Img.png";
-import Button from "./Button";
-
+import AuthSidebar from "./AuthSidebar";
 export default function Signup() {
   return (
-    <div className="flex bg-secondary z-0">
-      <div className="w-[400px] bg-primary flex flex-col h-screen items-center justify-center">
+    <div className="flex bg-secondary">
+      {/* <div className="w-full md:w-[450px] sticky bg-primary flex flex-col h-screen items-center justify-center">
         <div className="flex flex-col items-center justify-center">
           <div className="flex flex-col items-center justify-center mb-8">
             <img
@@ -43,7 +39,7 @@ export default function Signup() {
                 <input
                   type="email"
                   placeholder="Email"
-                  className="border-none px-4 py-3 rounded-md text-sm bg-primary focus:outline-1 focus:outline-secondaryy-400 rounded-md px-4 py-2"
+                  className="border-none px-4 py-3 rounded-md text-sm bg-primary focus:outline-1 focus:outline-secondaryy-400"
                 />
                 <label htmlFor="" className="">
                   Username
@@ -80,9 +76,10 @@ export default function Signup() {
         <div className="my-4">
           <p>Already have an account? Sign In</p>
         </div>
-      </div>
-      <div className="flex items-center justify-center ml-[400px]">
-        <img src={SignUpImg} alt="" />
+      </div> */}
+      <AuthSidebar />
+      <div className="hidden md:flex items-center justify-center flex-1">
+        <img src={SignUpImg} alt="" className="w-full md:w-10/12" />
       </div>
     </div>
   );

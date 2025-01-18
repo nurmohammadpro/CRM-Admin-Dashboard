@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <div className="flex flex-col md:flex-row items-center justify-center max-w-[1440px] mx-auto h-screen p-4">
       <div className="hero-text flex flex-col gap-4 md:w-full">
-        <h1 className="font-bold text-5xl md:text-4xl">
+        <h1 className="font-bold text-6xl lg:text-8xl">
           CRM App for{" "}
           <span className="font-extrabold text-xtraCo">Everyone</span>
         </h1>
