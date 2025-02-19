@@ -1,7 +1,13 @@
+import { useNavigate } from "react-router-dom";
 import HeroImage from "../assets/SAAS-Hero-Img.png";
 import Button from "./Button";
 
 export default function Home() {
+  const navigate = useNavigate();
+  const handleSignup = () => {
+    navigate("/signup");
+  };
+
   return (
     <div className="flex flex-col md:flex-row items-center justify-center max-w-[1440px] mx-auto h-screen p-4">
       <div className="hero-text flex flex-col gap-4 md:w-full">
@@ -15,7 +21,7 @@ export default function Home() {
           eum sit nobis provident. Dolores, atque. Possimus laborum autem nulla
           quos? Nostrum, corporis.
         </p>
-        <Button type="submit" title="Get Started" />
+        <Button onClick={handleSignup} type="submit" title="Get Started" />
       </div>
       <div className="hero-img md:w-full ">
         <img src={HeroImage} alt="Hero Image" className="w-full" />

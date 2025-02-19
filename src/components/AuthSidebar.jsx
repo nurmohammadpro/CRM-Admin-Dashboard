@@ -1,18 +1,44 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import SignInIcon from "../assets/login-Icon.png";
 import SignupIcon from "../assets/registerIcon.png";
+import { auth } from "../components/config/firebase";
 import Button from "./Button";
 import Icon from "./Icon";
 import InputField from "./InputField";
 
 export default function AuthSidebar() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSignUp = async (e) => {
+    e.preventDefault();
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+      const user = auth.currentUser;
+      console.log(user);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  const handleSignIn = async (e) => {
+    e.preventDefault();
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      const user = auth.currentUser;
+      console.log(user);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   const location = useLocation();
   const isSignUpPage = location.pathname === "/signup";
-
-  const navigation = useNavigate();
-  const handleNavigation = () => {
-    navigation(isSignUpPage ? "/signin" : "/signup");
-  };
 
   return (
     <div>
@@ -28,41 +54,58 @@ export default function AuthSidebar() {
             {isSignUpPage ? "Sign Up" : "Sign In"}
           </p>
           {isSignUpPage ? (
-            <form className="flex flex-col w-full gap-4 my-4" action="">
-              <InputField
+            <form
+              className="flex flex-col w-full gap-4 my-4"
+              onSubmit={handleSignUp}
+            >
+              {/* Optional Full Name Field */}
+              {/* <InputField
                 label="Full Name"
                 placeholder="Enter your full name"
                 type="text"
-              />
+              /> */}
               <InputField
                 label="Email"
                 placeholder="Enter your email"
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
               />
               <InputField
                 label="Password"
                 placeholder="Enter your password"
                 type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
               />
               <Button title="Sign Up" type="submit" />
             </form>
           ) : (
-            <form className="flex flex-col w-full gap-4 my-4" action="">
+            <form
+              className="flex flex-col w-full gap-4 my-4"
+              onSubmit={handleSignIn}
+            >
               <InputField
                 label="Email"
                 placeholder="Enter your email"
                 type="email"
+                value={email}
+                onChange={(value) => setEmail(value)}
               />
               <InputField
                 label="Password"
                 placeholder="Enter your password"
                 type="password"
+                value={password}
+                onChange={(value) => setPassword(value)}
               />
               <Button title="Sign In" type="submit" />
             </form>
           )}
-
-          <p className=" text-txtsec">
+          {console.log(email, password)}
+          <p className="text-txtsec">
             {isSignUpPage ? (
               <>
                 Already have an account?{" "}
